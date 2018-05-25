@@ -9,8 +9,6 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import numpy as np
-
-
 n = 512 # number of point in the whole interval
 f = 200.0 #  frequency in Hz
 dt = 1 / (f * 128 ) #128 samples per frequency
@@ -25,7 +23,10 @@ plt.xlabel("Tiempo")
 plt.ylabel("Senal")
 plt.savefig("senal.png")
 fourier = 0
+F=[]
 for i in range(len(y)):
-    fourier += y[i]*np.exp(-2*np.pi*i*(Im(1))*dt/n)
+    for j in range(n):
+        fourier += y[i]*np.exp(-2*np.pi*j*(I)*dt/n)
+    F.append(fourier)
 
 frecuencias = np.fft.fftfreq(np.transpose(fourier))
