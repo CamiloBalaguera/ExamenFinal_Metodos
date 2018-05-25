@@ -5,7 +5,9 @@
 # grafique la norma de la transformada en funcion de la frecuencia (figura 'fourier.png')
 # c. Lleve a cero los coeficientes de Fourier con frecuencias mayores que 10000 Hz y calcule 
 # la transformada inversa para graficar la nueva senal (figura 'filtro.png')
-
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
 import numpy as np
 
 
@@ -16,3 +18,14 @@ t = np.linspace( 0, (n-1)*dt, n)
 y = np.sin(2 * np.pi * f * t) + np.cos(2 * np.pi * f * t * t)
 noise = 1.4*(np.random.rand(n)+0.7)
 y  =  y + noise
+
+plt.figure()
+plt.plot(t, y)
+plt.xlabel("Tiempo")
+plt.ylabel("Senal")
+plt.savefig("senal.png")
+fourier = 0
+for i in range(len(y)):
+    fourier += y[i]*np.exp(-2*np.pi*i*(Im(1))*dt/n)
+
+frecuencias = np.fft.fftfreq(np.transpose(fourier))

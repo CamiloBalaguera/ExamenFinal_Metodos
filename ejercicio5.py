@@ -22,8 +22,8 @@ x = np.zeros(N)
 y = np.zeros(N)
 z = np.zeros(N)
 x[0] = 1.0
-y[0] = 1.0
-z[0] = 1.0
+y[0] = 0.0
+z[0] = 0.0
 for i in range(1,N):
     x[i] = (sigma*(y[i-1] - x[i-1]))*dt + x[i-1]
     y[i] = ((rho*x[i-1]) - y[i-1] -(x[i-1]*z[i-1]))*dt + y[i-1]
